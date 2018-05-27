@@ -12,10 +12,12 @@ def add_glass():
     # detect face
     detector = dlib.get_frontal_face_detector()
 
-    cap = cv2.VideoCapture(0)
+    # cap = cv2.VideoCapture(0)
+    img = cv2.imread("test.jpg")
 
-    while cap.isOpened():
-        ret, img = cap.read()
+    for i in range(1):
+    # while cap.isOpened():
+        # ret, img = cap.read()
         dets = detector(img, 1)
 
         # if detect face
@@ -61,6 +63,7 @@ def add_glass():
                 img[eye_left.y -bias:eye_left.y + height-bias , eye_left.x-30:eye_left.x + width-30] = dst
 
         cv2.imshow("Video",img)
+        cv2.imwrite("test_with_glass.jpg",img)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
